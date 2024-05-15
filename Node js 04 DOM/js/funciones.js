@@ -4,7 +4,7 @@ function decodificar() {
     let textoADecodificar = "";
     
     for(let i = 0; i < textoCodificado.length; i++) {
-        if(textoCodificado[i] == "(") { // Busco el fragmento codificado dentro del texto
+        if(textoCodificado[i] == "(") {
             let j = i;
             while(j < textoCodificado.length && textoCodificado[j] != ")") {
                 textoADecodificar += textoCodificado[j];
@@ -12,7 +12,7 @@ function decodificar() {
             }
             i = j;
             
-            for(let z = textoADecodificar.length - 1; z >= 0; z--) { // Decodifico el fragmento
+            for(let z = textoADecodificar.length - 1; z >= 0; z--) {
                 if(textoADecodificar[z] != "(" && textoADecodificar[z] != ")") {
                     textoDecodificado += textoADecodificar[z];
                 }
