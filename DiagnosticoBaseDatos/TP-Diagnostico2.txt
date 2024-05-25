@@ -1,0 +1,75 @@
+Escribir el enunciado de cada punto – presentarlo en un archivo .txt
+a)Crear una tabla llamada MARCAS con las siguientes columnas:
+IdMarca: Tipo SMALLINT, no puede ser nulo, valor predeterminado de 1
+NombreMarca: Tipo CHAR(10), no puede ser nulo
+NombreCiudad: Tipo CHAR(60), no puede ser nulo
+Establecer IdMarca como la clave primaria
+
+CREATE TABLE MARCAS (
+IdMarca SMALLINT NOT NULL DEFAULT 1,
+NombreMarca CHAR(10) NOT NULL,
+NombreCiudad CHAR(60) NOT NULL,
+PRIMARY KEY (idMarca))
+
+b)Crear una tabla llamada COCHES con las siguientes columnas:
+codcoche: Tipo SMALLINT, no puede ser nulo
+nombre: Tipo CHAR(15), no puede ser nulo
+modelo: Tipo CHAR(10)
+Establecer codcoche como la clave primaria
+
+CREATE TABLE COCHES (
+codcoche SMALLINT NOT NULL,
+nombre CHAR(15) NOT NULL,
+modelo CHAR(10),
+PRIMARY KEY (codcoche))
+
+c)Crear una tabla llamada MARCA con las siguientes columnas:
+IdMarca: Tipo SMALLINT, no puede ser nulo
+codcoche: Tipo SMALLINT, no puede ser nulo
+Establecer la combinación de IdMarca y codcoche como la clave primaria
+IdMarca es una clave foránea que referencia IdMarca en la tabla MARCAS
+codcoche es una clave foránea que referencia codcoche en la tabla COCHES
+
+CREATE TABLE MARCA (
+IdMarca SMALLINT NOT NULL,
+codcoche SMALLINT NOT NULL,
+PRIMARY KEY (cifm,codcoche),
+FOREIGN KEY (cifm) REFERENCES MARCA,
+FOREIGN KEY (codcoche) REFERENCES COCHE)
+
+d)Insertar las siguientes filas:
+(1, 'vw', 'Mar del Plata')
+(2, 'renault', 'Rosario')
+(3, 'fiat', 'Cordoba')
+(4, 'ford', 'Neuquen')
+
+INSERT INTO MARCAS VALUES (1,'vw','Mar del Plata')
+INSERT INTO MARCAS VALUES (2,'renault','Rosario')
+INSERT INTO MARCAS VALUES (3,'fiat','Cordoba')
+INSERT INTO MARCAS VALUES (4,'ford','Neuquen')
+
+e)Seleccionar toda la tabla MARCAS
+
+SELECT * FROM MARCAS
+
+f)Seleccionar NombreMarca y NombreCiudad
+
+SELECT NombreMarca, NombreCiudad FROM MARCAS
+
+g) Seleccionar NombreMarca y NombreCiudad si IdMarca es igual a 2
+
+SELECT NombreMarca, NombreCiudad FROM MARCAS WHERE IdMarca = 2
+
+h) Seleccionar NombreMarca y NombreCiudad si la ciudad es 'Neuquen'
+
+SELECT NombreMarca, NombreCiudad FROM MARCAS WHERE NombreCiudad = 'Neuquen'
+
+i)Seleccionar NombreMarca y NombreCiudad si la ciudad empieza con la letra 'S'
+
+SELECT NombreMarca, NombreCiudad FROM MARCAS WHERE NombreCiudad LIKE 'S%'
+
+j)Actualizar NombreCiudad a 'Neuquen' si la ciudad es igual a 'Jujuy'
+
+UPDATE MARCAS
+SET NombreCiudad = 'Neuquen'
+WHERE NombreCiudad = 'Jujuy'
