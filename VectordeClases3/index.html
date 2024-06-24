@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Animales de Zoológico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #E9EDC9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff3f;
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #111;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Animales de Zoológico</h1>
+        <div id="results"></div>
+        <h2>Animales en el Zoológico:</h2>
+        <table id="animalTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Jaula</th>
+                    <th>Tipo</th>
+                    <th>Peso</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
