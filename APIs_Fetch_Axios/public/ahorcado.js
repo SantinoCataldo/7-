@@ -69,7 +69,7 @@ function intentarLetra(letra) {
     }
 
     if (!palabra.includes(letra)) {  // Verificar si la letra no esta en la palabra
-        intentosRestantes--;  // Eestar el número de intentos restantes
+        intentosRestantes--;  // restar el número de intentos restantes
         dibujarAhorcado(6 - intentosRestantes);  // Dibujar la parte del ahorcado
         actualizarVidas();
     }
@@ -80,9 +80,9 @@ function intentarLetra(letra) {
 
 function actualizarPalabra() {
     palabraElemento.textContent = palabra
-        .split('')
-        .map(letra => letrasUsadas.has(letra) ? letra : '_')
-        .join(' ');  // Mostrar las letras adivinadas
+        .split('') // Dividir la palabra en un array de caracteres
+        .map(letra => letrasUsadas.has(letra) ? letra : '_') // Mapear cada letra para mostrarla o mostrar '_'
+        .join(' ');  // Unir las letras (o guiones bajos) en una cadena para mostrar la palabra adivinada
 }
 
 function actualizarVidas() {
