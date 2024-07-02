@@ -16,11 +16,6 @@ CREATE TABLE `patron` (
   `apellido` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 <
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `salida`
---
 
 CREATE TABLE `salida` (
   `id_salida` int(11) NOT NULL,
@@ -29,12 +24,6 @@ CREATE TABLE `salida` (
   `matricula_barco` varchar(20) DEFAULT NULL,
   `id_patron` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `socio`
---
 
 CREATE TABLE `socio` (
   `id_socio` int(11) NOT NULL,
