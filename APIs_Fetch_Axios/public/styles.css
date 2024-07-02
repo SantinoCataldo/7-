@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+.border {
+    background: linear-gradient(120deg, #ff8064, #725bdc);
+    border-radius: 14px;
+    width: min(700px, 100%);
+    padding: 4px;
+    box-shadow: 0px 0px 15px 0px #ff80644d;
+}
+
+#container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    z-index: 20;
+    transition: 1s ease-out;
+    opacity: 1;
+}
+
+#loader.hidden {
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.loader_container{
+    background: linear-gradient(120deg, #ff8064, #725bdc);
+    height: min-content;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    border-radius: 20px;
+    color: #000;
+    gap: 15px;
+    box-shadow: 0px 0px 15px 0px #ff80644d;
+}
+
+.loader_container h1{
+    color: #000;
+}
+
+ h1 {
+    font-size: 64px;
+    color: #fff;
+}
+
+#palabra {
+    font-size: 32px;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+}
+
+#letras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letra {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    cursor: pointer;
+    user-select: none;
+}
+
+.letra.usada {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+#ahorcadoCanvas {
+    border: 1px solid #111;
+    border-radius: 10px;
+}
+
+#jugar {
+    font-size: 18px;
+    padding: 16px 28px;
+    font-weight: 500;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#jugar:hover {
+    background: #111;
+}
+
+.vida {
+    width: 30px;
+    height: 25px;
+    margin: 5px;
+    display: inline-block;
+    clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");
+}
+
+.verde {
+    background: #F50000;
+}
+
+.rojo {
+    background: #000;
+}
+
+.container_letras{
+    background: #F0E2E7;
+    border-radius: 10px;
+    padding: 10px 0;
+}

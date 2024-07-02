@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del ahorcado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader_container">
+            <h1>Ahorcadaso</h1>
+            <h3>Santino Cataldo</h3>
+            <button id="jugar">Jugar</button>
+        </div>
+    </div>
+    <h1>Ahorcadaso</h1>
+    <div class="border">
+        <div id="container">
+            <div id="vidas"></div>
+            <canvas id="ahorcadoCanvas" width="300" height="300"></canvas>
+            <div id="palabra"></div>
+        </div>
+    </div>
+    <div class="border">
+        <div class="container_letras">
+            <div id="letras"></div>
+        </div>
+    </div>
+    <script src="ahorcado.js"></script>
+</body>
+
+</html>
