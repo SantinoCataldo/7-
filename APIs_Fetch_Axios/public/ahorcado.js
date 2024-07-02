@@ -142,7 +142,9 @@ function dibujarAhorcado(paso) {
 }
 
 function verificarEstadoJuego() {
-    if (palabra === palabraElemento.textContent.replace(/ /g, '')) {  // Si se han adivinado todas las letras de la palabra
+    if (palabra === palabraElemento.textContent.replace(/ /g, '')) {
+        // `.replace(/ /g, '')` elimina todos los espacios en blanco de la cadena `palabraElemento.textContent`
+        // Esto es necesario porque en la representación visual de las letras a adivinar, se usan espacios para separar las letras adivinadas de las no adivinadas
         setTimeout(() => {
             alert('Ganaste');
             empezarJuego();
@@ -155,6 +157,7 @@ function verificarEstadoJuego() {
     }
 }
 
+// Iniciar cuando se carga la página completamente
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
 
@@ -163,7 +166,3 @@ document.addEventListener('DOMContentLoaded', () => {
         inicializarJuego();
     });
 });
-
-
-// Iniciar el juego cuando se carga la página completamente
-document.addEventListener('DOMContentLoaded', inicializarJuego);
