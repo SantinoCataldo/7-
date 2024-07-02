@@ -144,7 +144,7 @@ function dibujarAhorcado(paso) {
 function verificarEstadoJuego() {
     if (palabra === palabraElemento.textContent.replace(/ /g, '')) {  // Si se han adivinado todas las letras de la palabra
         setTimeout(() => {
-            alert('¡Felicidades! Has ganado.');
+            alert('Ganaste');
             empezarJuego();
         }, 100);
     } else if (intentosRestantes === 0) {
