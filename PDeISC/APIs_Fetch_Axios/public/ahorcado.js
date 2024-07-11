@@ -8,6 +8,21 @@ let canvas = document.getElementById('ahorcadoCanvas');  // Canvas donde se dibu
 let ctx = canvas.getContext('2d');  // Contexto de dibujo en el canvas
 let jugarBoton = document.getElementById('jugar');
 let vidasElemento = document.getElementById('vidas');
+let messageContainer = document.getElementById('messageContainer');
+let messageElement = document.getElementById('message');
+let continueButton = document.getElementById('continueButton');
+let exitButton = document.getElementById('exitButton');
+
+continueButton.addEventListener('click', () => {
+    messageElement.textContent = ''; // Limpiar el mensaje
+    continueButton.disabled = true; // Desactivar el botón "Continuar" de nuevo
+    messageContainer.classList.add('hidden'); // Ocultar el contenedor de mensajes
+    empezarJuego(); // Volver a iniciar el juego
+});
+
+exitButton.addEventListener('click', () => {
+    window.location.href = 'https://www.youtube.com/watch?v=DDSerADikPg'; // Cambia esto a la URL que desees para "Salir"
+});
 
 async function inicializarJuego() {
     jugarBoton.addEventListener('click', empezarJuego);
@@ -52,8 +67,11 @@ function manejarEntradaTeclado(event) {
     const letra = event.key.toUpperCase();  // Obtener la letra ingresada y convertirla a mayúscula
     if (letra.length === 1 && letra >= 'A' && letra <= 'Z') {  // Verificar que la letra sea válida
         intentarLetra(letra);  // Intentar adivinar la letra
+    } else if (event.key === ' ') {
+        event.preventDefault();  // Evitar el comportamiento predeterminado al presionar espacio
     }
 }
+
 
 function intentarLetra(letra) {
     if (letrasUsadas.has(letra)) return;  // Salir de la función si la letra ya ha sido intentada
@@ -61,9 +79,6 @@ function intentarLetra(letra) {
     letrasUsadas.add(letra);  // Agregar la letra al conjunto de letras usadas
 
     const letraElemento = document.querySelector(`.letra:nth-child(${letra.charCodeAt(0) - 64})`);
-    // `letra.charCodeAt(0)` obtiene el valor Unicode de la letra. Por ejemplo, para 'A', devuelve 65.
-    // La resta `- 64` ajusta el valor para obtener el índice correcto del elemento dentro de los botones de letras.
-    // Esto se debe a que el primer botón (para la letra 'A') tiene un índice de 1 en el selector `nth-child`.
     if (letraElemento) {
         letraElemento.classList.add('usada');
     }
@@ -94,6 +109,28 @@ function actualizarVidas() {
         vidasElemento.appendChild(vida);  // Agregar el elemento de vida al contenedor de vidas
     }
 }
+
+function verificarEstadoJuego() {
+    if (palabra === palabraElemento.textContent.replace(/ /g, '')) {
+        setTimeout(() => {
+            messageElement.textContent = 'Ganaste';
+            messageContainer.classList.remove('hidden');
+            continueButton.disabled = false;
+            messageElement.style.color = '#2B9348';
+            exitButton.disabled = false;
+
+        }, 100);
+    } else if (intentosRestantes === 0) {
+        setTimeout(() => {
+            messageElement.textContent = `La palabra era: ${palabra}`;
+            messageContainer.classList.remove('hidden');
+            continueButton.disabled = false;
+            messageElement.style.color = '#EF233C';
+            exitButton.disabled = false;
+        }, 100);
+    }
+}
+
 
 function limpiarCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Limpiar el canvas completamente
@@ -139,22 +176,6 @@ function dibujarAhorcado(paso) {
             break;
     }
     ctx.stroke();  // Dibujar la parte del ahorcado
-}
-
-function verificarEstadoJuego() {
-    if (palabra === palabraElemento.textContent.replace(/ /g, '')) {
-        // `.replace(/ /g, '')` elimina todos los espacios en blanco de la cadena `palabraElemento.textContent`
-        // Esto es necesario porque en la representación visual de las letras a adivinar, se usan espacios para separar las letras adivinadas de las no adivinadas
-        setTimeout(() => {
-            alert('Ganaste');
-            empezarJuego();
-        }, 100);
-    } else if (intentosRestantes === 0) {
-        setTimeout(() => {
-            alert(`La palabra era: ${palabra}`);
-            empezarJuego();
-        }, 100);
-    }
 }
 
 // Iniciar cuando se carga la página completamente
