@@ -21,7 +21,7 @@ continueButton.addEventListener('click', () => {
 });
 
 exitButton.addEventListener('click', () => {
-    window.location.href = 'https://www.youtube.com/watch?v=DDSerADikPg'; // Cambia esto a la URL que desees para "Salir"
+    window.location.href = 'https://www.youtube.com/watch?v=DDSerADikPg';
 });
 
 async function inicializarJuego() {
@@ -58,14 +58,14 @@ function crearBotonesLetras() {
         const letraElemento = document.createElement('div');
         letraElemento.textContent = letra;
         letraElemento.className = 'letra';
-        letraElemento.addEventListener('click', () => intentarLetra(letra));  // Event listener para intentar la letra al hacer click
+        letraElemento.addEventListener('click', () => intentarLetra(letra)); 
         letrasElemento.appendChild(letraElemento);  // Agregar el elemento de letra al contenedor de letras
     }
 }
 
 function manejarEntradaTeclado(event) {
     const letra = event.key.toUpperCase();  // Obtener la letra ingresada y convertirla a mayúscula
-    if (letra.length === 1 && letra >= 'A' && letra <= 'Z') {  // Verificar que la letra sea válida
+    if (letra.length === 1 && letra >= 'A' && letra <= 'Z') {
         intentarLetra(letra);  // Intentar adivinar la letra
     } else if (event.key === ' ') {
         event.preventDefault();  // Evitar el comportamiento predeterminado al presionar espacio
