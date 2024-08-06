@@ -8,6 +8,10 @@ body {
     font-weight: 500;
     background: #111;
     height: 100vh;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 main {
@@ -18,7 +22,6 @@ main {
     margin-right: auto;
     gap: 30px;
     width: min(1400px, 100%);
-    height: 100vh;
 }
 
 .container{
@@ -38,6 +41,7 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
     padding: 20px;
+    border: 5px solid #725bdc;
 }
 
 #loader{
@@ -161,6 +165,7 @@ main {
     width: min(700px, 100%);
     width: 200px;
     text-align: center;
+    border: 5px solid #725bdc;
 }
 
 .hidden {
@@ -175,10 +180,11 @@ main {
     gap: 20px;
     width: 200px;
     text-align: center;
-    background-color: #fff;
+    background: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 5px solid #725bdc;
 }
 
 #message {
@@ -186,11 +192,32 @@ main {
     color: #000;
 }
 
-#continueButton, #exitButton {
+#continueButton, #exitButton, #restartButton {
     font-size: 18px;
     padding: 10px 20px;
     font-weight: 500;
     background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#nombreJugador{
+    outline: 0;
+    padding: 10px 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#sumbitButton{
+    font-size: 18px;
+    padding: 10px 20px;
+    font-weight: 500;
+    background: #344E41;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -205,5 +232,25 @@ main {
 
 #continueButton:hover:not(:disabled), #exitButton:hover:not(:disabled) {
     background: #111;
+}
+
+#tablaPosicionesContainer{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border: 5px solid #725bdc;
+}
+
+#tablaPosiciones thead tr th{
+    padding-right: 10px;
 }
 

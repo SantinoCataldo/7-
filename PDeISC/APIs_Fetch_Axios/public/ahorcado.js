@@ -1,6 +1,11 @@
 let palabra = '';  // Palabra a adivinar
 let letrasUsadas = new Set();  // Conjunto de letras ya intentadas
 let intentosRestantes = 6;
+let tiempoInicio;
+let puntos = 0;
+let tiempoTranscurrido = 0;
+let temporizador;
+let manejarEntradaTeclado = null;
 let letrasElemento = document.getElementById('letras');
 let palabraElemento = document.getElementById('palabra');
 let letrasUsadasElemento = document.getElementById('letras-usadas');
@@ -12,6 +17,8 @@ let messageContainer = document.getElementById('messageContainer');
 let messageElement = document.getElementById('message');
 let continueButton = document.getElementById('continueButton');
 let exitButton = document.getElementById('exitButton');
+const tiempoElemento = document.getElementById('tiempo');
+const tablaPosicionesContainer = document.getElementById('tablaPosicionesContainer');
 
 continueButton.addEventListener('click', () => {
     messageElement.textContent = ''; // Limpiar el mensaje
@@ -21,25 +28,53 @@ continueButton.addEventListener('click', () => {
 });
 
 exitButton.addEventListener('click', () => {
-    window.location.href = 'https://www.youtube.com/watch?v=DDSerADikPg';
+    window.location.href = '/';
 });
 
 async function inicializarJuego() {
-    jugarBoton.addEventListener('click', empezarJuego);
+    manejarEntradaTeclado = (event) => {
+        const letra = event.key.toUpperCase();  // Obtener la letra ingresada y convertirla a mayúscula
+        if (letra.length === 1 && letra >= 'A' && letra <= 'Z') {
+            intentarLetra(letra);  // Intentar adivinar la letra
+        } else if (event.key === ' ') {
+            event.preventDefault();  // Evitar el comportamiento predeterminado al presionar espacio
+        }
+    };
+
     document.addEventListener('keydown', manejarEntradaTeclado);
+    jugarBoton.addEventListener('click', empezarJuego);
     await empezarJuego();  // Empezar el juego al cargar la página
+}
+
+function iniciarTemporizador() {
+    tiempoInicio = Date.now();
+    temporizador = setInterval(() => {
+        tiempoTranscurrido = Math.floor((Date.now() - tiempoInicio) / 1000);
+        tiempoElemento.textContent = `Tiempo: ${tiempoTranscurrido}s`;
+    }, 1000);
+}
+
+function detenerTemporizador() {
+    clearInterval(temporizador);
 }
 
 async function empezarJuego() {
     letrasUsadas.clear();
     intentosRestantes = 6;
+    // No reiniciar puntos ni tiempo transcurrido aquí
+    if (!temporizador) {  // Iniciar el temporizador solo si no está ya en marcha
+        iniciarTemporizador();
+    }
     await obtenerPalabra();
     actualizarPalabra();
     limpiarCanvas();
     dibujarBase();
     crearBotonesLetras();
     actualizarVidas();
+    habilitarLetras(true);
+    habilitarTeclado(true);
 }
+
 
 async function obtenerPalabra() {
     try {
@@ -52,44 +87,60 @@ async function obtenerPalabra() {
 }
 
 function crearBotonesLetras() {
-    letrasElemento.innerHTML = '';  // Limpiar el contenido anterior de las letras disponibles
-    for (let i = 65; i <= 90; i++) {  // Recorrer el código ASCII de A a Z
-        const letra = String.fromCharCode(i);  // `String.fromCharCode(i)` convierte el código ASCII `i` en su letra
-        const letraElemento = document.createElement('div');
+    letrasElemento.innerHTML = '';
+    for (let i = 65; i <= 90; i++) {
+        const letra = String.fromCharCode(i);
+        const letraElemento = document.createElement('button');
         letraElemento.textContent = letra;
         letraElemento.className = 'letra';
-        letraElemento.addEventListener('click', () => intentarLetra(letra)); 
-        letrasElemento.appendChild(letraElemento);  // Agregar el elemento de letra al contenedor de letras
+        letraElemento.addEventListener('click', () => intentarLetra(letra));
+        letrasElemento.appendChild(letraElemento);
     }
 }
 
-function manejarEntradaTeclado(event) {
-    const letra = event.key.toUpperCase();  // Obtener la letra ingresada y convertirla a mayúscula
-    if (letra.length === 1 && letra >= 'A' && letra <= 'Z') {
-        intentarLetra(letra);  // Intentar adivinar la letra
-    } else if (event.key === ' ') {
-        event.preventDefault();  // Evitar el comportamiento predeterminado al presionar espacio
+function habilitarTeclado(habilitar) {
+    if (habilitar) {
+        document.addEventListener('keydown', manejarEntradaTeclado);
+    } else {
+        document.removeEventListener('keydown', manejarEntradaTeclado);
     }
 }
 
+function habilitarLetras(habilitar) {
+    const botones = letrasElemento.getElementsByTagName('button');
+    for (let boton of botones) {
+        boton.disabled = !habilitar;
+    }
+}
+
+function desactivarTeclado() {
+    if (manejarEntradaTeclado) {
+        document.removeEventListener('keydown', manejarEntradaTeclado);
+    }
+}
 
 function intentarLetra(letra) {
-    if (letrasUsadas.has(letra)) return;  // Salir de la función si la letra ya ha sido intentada
+    if (letrasUsadas.has(letra)) return;
 
-    letrasUsadas.add(letra);  // Agregar la letra al conjunto de letras usadas
+    letrasUsadas.add(letra);
 
-    const letraElemento = document.querySelector(`.letra:nth-child(${letra.charCodeAt(0) - 64})`);
+    const letraElemento = letrasElemento.querySelector(`button:nth-child(${letra.charCodeAt(0) - 64})`);
     if (letraElemento) {
         letraElemento.classList.add('usada');
+        letraElemento.disabled = true;
     }
 
-    if (!palabra.includes(letra)) {  // Verificar si la letra no esta en la palabra
-        intentosRestantes--;  // restar el número de intentos restantes
-        dibujarAhorcado(6 - intentosRestantes);  // Dibujar la parte del ahorcado
+    if (palabra.includes(letra)) {
+        puntos += 20; // Sumar puntos por letra correcta
+    } else {
+        puntos -= 10; // Restar puntos por letra incorrecta
+        intentosRestantes--;
+        dibujarAhorcado(6 - intentosRestantes);
         actualizarVidas();
     }
 
     actualizarPalabra();
+    actualizarPuntaje(); // Actualizar el puntaje
     verificarEstadoJuego();
 }
 
@@ -112,25 +163,112 @@ function actualizarVidas() {
 
 function verificarEstadoJuego() {
     if (palabra === palabraElemento.textContent.replace(/ /g, '')) {
-        setTimeout(() => {
-            messageElement.textContent = 'Ganaste';
-            messageContainer.classList.remove('hidden');
-            continueButton.disabled = false;
-            messageElement.style.color = '#2B9348';
-            exitButton.disabled = false;
-
-        }, 100);
+        finalizarJuego('Ganaste');
     } else if (intentosRestantes === 0) {
-        setTimeout(() => {
-            messageElement.textContent = `La palabra era: ${palabra}`;
-            messageContainer.classList.remove('hidden');
-            continueButton.disabled = false;
-            messageElement.style.color = '#EF233C';
-            exitButton.disabled = false;
-        }, 100);
+        finalizarJuego(`Perdiste. La palabra era: ${palabra}`);
+        detenerTemporizador(); // Detener el temporizador si se pierde
     }
 }
 
+function actualizarPuntaje() {
+    const puntosElemento = document.getElementById('puntos');
+    puntosElemento.textContent = `Puntos: ${puntos}`;
+}
+
+function finalizarJuego(mensaje) {
+    habilitarLetras(false);
+    desactivarTeclado();
+    puntos += mensaje === 'Ganaste' ? 50 : 0; // Bonus por ganar
+    puntos += mensaje === 'Ganaste' ? Math.max(0, 100 - tiempoTranscurrido) : 0; // Bonus por tiempo si se gana
+    mostrarMensajeFinal(mensaje, mensaje === 'Ganaste');
+}
+
+function mostrarMensajeFinal(mensaje, esVictoria) {
+    messageElement.textContent = mensaje;
+    messageContainer.classList.remove('hidden');
+    continueButton.disabled = !esVictoria;
+    messageElement.style.color = esVictoria ? '#2B9348' : '#EF233C';
+    exitButton.disabled = false;
+
+    if (!esVictoria) { // Solo mostrar el formulario si el jugador pierde
+        mostrarFormularioPuntuacion();
+    }
+}
+
+function mostrarFormularioPuntuacion() {
+    const formulario = document.createElement('form');
+    formulario.innerHTML = `
+        <input type="text" id="nombreJugador" placeholder="Tu nombre" required>
+        <button id="sumbitButton" type="submit">Guardar puntuación</button>
+    `;
+    formulario.onsubmit = guardarPuntuacion;
+    messageContainer.appendChild(formulario);
+}
+
+async function guardarPuntuacion(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('nombreJugador').value;
+
+    try {
+        const response = await fetch('/api/guardar-puntuacion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombre, tiempo: tiempoTranscurrido, puntos }),
+        });
+
+        continueButton.disabled = true;
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success) {
+                mostrarTablaPosiciones();
+                continueButton.disabled = true;
+                const formulario = document.querySelector('#messageContainer form');
+                if (formulario) {
+                    formulario.remove();
+                }
+            } 
+        } 
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function mostrarTablaPosiciones() {
+    try {
+        const response = await fetch('/api/tabla-posiciones'); // Asegúrate de que esta URL sea correcta
+        const posiciones = await response.json();
+
+        const tablaPosiciones = document.getElementById('tablaPosiciones');
+        const tbody = tablaPosiciones.querySelector('tbody');
+
+        tbody.innerHTML = '';
+
+        posiciones.slice(0, 5).forEach((pos, index) => {
+            const row = document.createElement('tr');
+            row.id = `row${index + 1}`;
+
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${pos.nombre}</td>
+                <td>${pos.puntos}</td>
+                <td>${pos.tiempo} seg</td>
+            `;
+
+            tbody.appendChild(row);
+        });
+
+        // Mostrar el contenedor
+        document.getElementById('tablaPosicionesContainer').classList.remove('hidden');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al obtener la tabla de posiciones');
+    }
+}
+
+mostrarTablaPosiciones();
 
 function limpiarCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Limpiar el canvas completamente
