@@ -1,0 +1,11 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  background: #1D3557;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}

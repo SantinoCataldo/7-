@@ -1,0 +1,35 @@
+.formulario{
+    padding: 15px;
+    width: 400px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background: #ffffff1f;
+}
+
+.formulario form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.formulario input{
+    background: #ffffff1f;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding: 10px;
+    color: #fff;
+}
+
+.formulario input::placeholder{
+    color: #ffffff83;
+}
+
+.formulario button {
+    padding: 10px 30px;
+    background: #ffffff1f;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+}
