@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from './imageGallery.module.css';
 
 const images = [
-  'https://media.ambito.com/p/c15afeab2223071f110014b31d4d1aa4/adjuntos/239/imagenes/036/039/0036039183/1200x675/smart/garrafasjpg.jpg',
-  'https://img.lagaceta.com.ar/fotos/notas/2023/05/15/como-prevenir-accidentes-domesticos-garrafa-gas-991313-115932.jpg',
-  'https://www.angosturainforma.gob.ar/wp-content/uploads/2020/04/Garrafas-scaled.jpg',
-  'https://images.pagina12.com.ar/styles/focal_3_2_960x640/public/2024-02/816113-garrafas-20gas-20aumento.jpg?h=b3660f0d&itok=DOMgRllX',
-  'https://hipergas.com.ar/wp-content/uploads/2018/02/Foto-garrafas-10-kg-Hipergas.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/7/76/Cacho_Casta%C3%B1a.png',
+  'https://www.fundacionkonex.org/custom/web/data/imagenes/repositorio/2010/6/1/2460/20160316120838dc2b690516158a874dd8aabe1365c6a0.jpg',
+  'https://www.clarin.com/2016/09/22/SkN1Qn3t4g_312x240.jpg',
+  'https://www.infobae.com/new-resizer/ZU8umx66nB3Iuw3kscjI0636wlQ=/992x558/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/HNRK5SWZZVFQ5CZNLJRET5Q5F4.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU4LpBi6xKlMiKqleTn7viFqNH-I0mP8bfxjNNSppKE6nOE4AhdVX7cldWvu_cA4KY9a0&usqp=CAUhttps://www.ellitoral.com/images/2022/03/09/sJwbjPub2_1300x655__1.jpg',
 ];
 
 const ImageGallery = () => {

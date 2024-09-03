@@ -1,0 +1,36 @@
+.buttons_container {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .interactive_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .interactive_button:hover {
+    background-color: #0056b3;
+  }
+  
+  .interactive_button:active {
+    transform: scale(0.95);
+  }
+  

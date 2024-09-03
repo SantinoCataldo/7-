@@ -19,23 +19,23 @@ const RealTimeForm = () => {
         switch (name) {
             case 'name':
                 if (!value) {
-                    error = 'Name is required';
+                    error = 'El nombre es obligatorio';
                 } else if (value.length < 3) {
-                    error = 'Name must be at least 3 characters';
+                    error = 'El nombre tiene que tener mas de 3 caracteres';
                 }
                 break;
             case 'email':
                 if (!value) {
-                    error = 'Email is required';
+                    error = 'El Email es obligatorio';
                 } else if (!/\S+@\S+\.\S+/.test(value)) {
-                    error = 'Email address is invalid';
+                    error = 'El Email es invalido';
                 }
                 break;
             case 'password':
                 if (!value) {
-                    error = 'Password is required';
+                    error = 'La contraseña es obligatoria';
                 } else if (value.length < 6) {
-                    error = 'Password must be at least 6 characters';
+                    error = 'La contraseña tiene que tener mas de 6 caracteres';
                 }
                 break;
             default:
