@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import styles from './imageGallery.module.css';
 
 const images = [
-  'https://upload.wikimedia.org/wikipedia/commons/7/76/Cacho_Casta%C3%B1a.png',
+  'https://i.pinimg.com/564x/70/a4/f6/70a4f6f9b19b72ea91abda133fe681fa.jpg',
   'https://www.fundacionkonex.org/custom/web/data/imagenes/repositorio/2010/6/1/2460/20160316120838dc2b690516158a874dd8aabe1365c6a0.jpg',
-  'https://www.clarin.com/2016/09/22/SkN1Qn3t4g_312x240.jpg',
-  'https://www.infobae.com/new-resizer/ZU8umx66nB3Iuw3kscjI0636wlQ=/992x558/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/HNRK5SWZZVFQ5CZNLJRET5Q5F4.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU4LpBi6xKlMiKqleTn7viFqNH-I0mP8bfxjNNSppKE6nOE4AhdVX7cldWvu_cA4KY9a0&usqp=CAUhttps://www.ellitoral.com/images/2022/03/09/sJwbjPub2_1300x655__1.jpg',
+  'https://i.pinimg.com/564x/1a/7e/8a/1a7e8a39c8532194c2536d36904198ba.jpg',
+  'https://i.pinimg.com/564x/33/df/23/33df2343c2ea4af3ab5a478198b68d2d.jpg',
+  'https://i.pinimg.com/564x/91/31/38/913138864cb28ad11e5ba7319a18d468.jpg',
 ];
+
 
 const ImageGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +30,15 @@ const ImageGallery = () => {
 
   return (
     <div className={styles.gallery_container}>
-      <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} />
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`Image ${index + 1}`}
+          className={`${styles.gallery_image} ${index === currentIndex ? styles.selected : ''}`}
+          onClick={() => setCurrentIndex(index)} // Permitir seleccionar imagen con clic
+        />
+      ))}
     </div>
   );
 };

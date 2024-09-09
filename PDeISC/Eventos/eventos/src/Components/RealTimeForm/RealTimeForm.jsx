@@ -74,7 +74,7 @@ const RealTimeForm = () => {
                         value={formData.name}
                         onChange={handleChange}
                     />
-                    {errors.name && <p className="error">{errors.name}</p>}
+                    {errors.name && <p className={styles.error}>{errors.name}</p>}
                 </div>
                 <div className={styles.form_group}>
                     <label>Email:</label>
@@ -85,7 +85,7 @@ const RealTimeForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                     />
-                    {errors.email && <p className="error">{errors.email}</p>}
+                    {errors.email && <p className={styles.error}>{errors.email}</p>}
                 </div>
                 <div className={styles.form_group}>
                     <label>Contraseña:</label>
@@ -96,7 +96,7 @@ const RealTimeForm = () => {
                         value={formData.password}
                         onChange={handleChange}
                     />
-                    {errors.password && <p className="error">{errors.password}</p>}
+                    {errors.password && <p className={styles.error}>{errors.password}</p>}
                 </div>
                 <button type="submit">Enviar</button>
             </form>

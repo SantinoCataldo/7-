@@ -1,0 +1,14 @@
+.presentation {
+	text-align: center;
+	font-size: calc(8vw + 8vh);
+	color: #fff;
+	letter-spacing: -.3vw;
+	overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+}
