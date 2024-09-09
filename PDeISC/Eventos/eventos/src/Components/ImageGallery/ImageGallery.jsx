@@ -6,7 +6,7 @@ const images = [
   'https://www.fundacionkonex.org/custom/web/data/imagenes/repositorio/2010/6/1/2460/20160316120838dc2b690516158a874dd8aabe1365c6a0.jpg',
   'https://i.pinimg.com/564x/1a/7e/8a/1a7e8a39c8532194c2536d36904198ba.jpg',
   'https://i.pinimg.com/564x/33/df/23/33df2343c2ea4af3ab5a478198b68d2d.jpg',
-  'https://i.pinimg.com/564x/91/31/38/913138864cb28ad11e5ba7319a18d468.jpg',
+  'https://pbs.twimg.com/media/FkbNNUYXkAMIn3F.jpg',
 ];
 
 
@@ -36,7 +36,7 @@ const ImageGallery = () => {
           src={image}
           alt={`Image ${index + 1}`}
           className={`${styles.gallery_image} ${index === currentIndex ? styles.selected : ''}`}
-          onClick={() => setCurrentIndex(index)} // Permitir seleccionar imagen con clic
+          onClick={() => setCurrentIndex(index)}
         />
       ))}
     </div>

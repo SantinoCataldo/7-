@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './Presentation.module.css'; // Asegúrate de crear este archivo CSS
 
 const Presentation = () => {

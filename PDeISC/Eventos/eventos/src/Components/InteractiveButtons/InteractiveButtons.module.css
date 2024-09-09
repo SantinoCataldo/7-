@@ -4,7 +4,8 @@
     flex-shrink: 0;
     width: 100%;
     align-items: center;
-    height: 100%;
+    height: 100vh;
+    color: #fff;
   }
 
   .buttons {
@@ -14,24 +15,51 @@
     justify-content: center;
     padding: 20px;
     max-width: 450px;
+    flex-direction: column;
+    text-align: center;
   }
   
   .interactive_button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
+    background: #6B5FFF;
+    color: #fff;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    color: #fff;
+    border: 1px solid #ccc;
+    backdrop-filter: blur(3px);
+    background:linear-gradient(#121213, #121213), linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    background-origin: border-box;
+    background-clip: padding-box, border-box, border-box;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
   }
-  
-  .interactive_button:hover {
-    background-color: #0056b3;
+
+  .interactive_button::before{
+    content: '';
+    background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -5;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+    filter: blur(calc(0.8 * 40px));
+    opacity: 0.3;
   }
   
   .interactive_button:active {
     transform: scale(0.95);
   }
+
+  .interactive_button:hover{
+    transform: scale(1.05);
+  }
   
+  @keyframes animate {
+    0% {background-position: 0}
+    100% {background-position: 200%}
+  }
