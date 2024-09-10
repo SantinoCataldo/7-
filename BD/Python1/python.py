@@ -1,50 +1,88 @@
 def main():
-    print("Bienvenido a la Novela Gráfica: El Viaje a Teratiar")
-    print("Eres un joven valiente que ha decidido emprender un viaje hacia la legendaria ciudad de Teratiar.\n")
+    print("Aventura: Ir al Supermercado (de Noche)")
+    print("Es una noche oscura y fría, y te das cuenta de que necesitás comprar algunas cosas.")
+    print("Tu objetivo: ir al supermercado antes de que cierren. Pero cuidado, cualquier mala decisión puede terminar muy mal...\n")
 
-    print("Escena 1: En la Aldea")
-    print("Te encuentras en tu aldea natal, preparando tus cosas para el viaje.")
-    decision1 = input("¿Qué haces? (1) Hablas con el anciano sabio para recibir consejos / (2) Te diriges directamente hacia el bosque en tu camino a Teratiar: ")
+    print("Escena 1: En la puerta de tu casa")
+    print("Estás por salir al supermercado, pero sentís que algo falta.")
+    decision1 = input("¿Qué hacés? (1) Revisás la billetera / (2) Salís sin revisar nada porque se hace tarde / (3) Te quedás viendo TikTok: ")
 
     if decision1 == "1":
-        print("\nDecides hablar con el anciano sabio...")
-        print("El anciano te da un mapa antiguo y te advierte sobre los peligros del camino.")
-        decision2 = input("¿Qué haces? (1) Sigues el mapa del anciano / (2) Ignoras el mapa y sigues tu instinto: ")
+        print("\nDecidís revisar la billetera. Bien hecho, tenés todo lo necesario.")
+        decision2 = input("¿Vas al supermercado en bicicleta, auto o caminando? (1) Bicicleta / (2) Auto / (3) Caminando: ")
 
         if decision2 == "1":
-            print("\nSigues el mapa y encuentras un atajo secreto.")
-            print("Logras evitar varios peligros y llegas a Teratiar a salvo.")
-            print("¡Has alcanzado la legendaria ciudad de Teratiar y tu nombre será recordado!")
-        elif decision2 == "2":
-            print("\nIgnoras el mapa y sigues tu instinto...")
-            print("Desafortunadamente, te pierdes en el camino y nunca llegas a Teratiar.")
-            print("El viaje termina en tragedia. Game Over.")
-        else:
-            print("\nOpción no válida. Mientras dudas, pierdes el día y decides no emprender el viaje.")
-            print("Game Over.")
-    
-    elif decision1 == "2":
-        print("\nDecides dirigirte directamente hacia el bosque...")
-        print("El camino es oscuro y lleno de peligros.")
-        print("Sin un mapa o guía, te enfrentas a muchas dificultades.")
-        decision3 = input("¿Qué haces? (1) Sigues adelante sin importar los peligros / (2) Regresas a la aldea para prepararte mejor: ")
+            print("\nDecidís ir en bicicleta. La noche está fresca.")
+            decision3 = input("¿Vas rápido o despacio? (1) Rápido / (2) Despacio: ")
 
-        if decision3 == "1":
-            print("\nSigues adelante con determinación...")
-            print("Después de días de lucha, llegas a Teratiar, pero estás exhausto y sin fuerzas.")
-            print("Aunque llegas, te das cuenta de que el viaje podría haber sido más fácil.")
-        elif decision3 == "2":
-            print("\nDecides regresar a la aldea...")
-            print("Te preparas mejor y esta vez, con el mapa del anciano, llegas a Teratiar sin problemas.")
-            print("¡Has alcanzado la legendaria ciudad de Teratiar!")
+            if decision3 == "1":
+                print("\nVas rápido en bicicleta. De repente, te caés y te rompés la clavícula.")
+                print("Final 1: Terminas en el hospital con una clavícula rota. No pudiste ir al supermercado.")
+            else:
+                print("\nVas despacio en bicicleta y llegás al supermercado sin problemas.")
+                decision4 = input("Al pagar, te avisan que sos el comprador 100.000 del supermercado. ¿Querés recibir el premio? (1) Sí / (2) No, desconfías: ")
+
+                if decision4 == "1":
+                    print("\nFinal 2: ¡Ganaste un premio increíble! Te llevás una TV de 55 pulgadas y las compras son gratis.")
+                    print("¡Felicitaciones, es el mejor final posible!")
+                else:
+                    print("\nFinal 3: Compraste todo sin problemas, pero rechazaste el premio por desconfianza.")
+                    print("A pesar de eso, llegás a casa tranquilo. ¡Misión cumplida!")
+        
+        elif decision2 == "2":
+            print("\nDecidís ir en auto. En el camino, te cruzás con un trapito que quiere limpiarte el parabrisas.")
+            decision3 = input("¿Le das una buena propina o no? (1) Sí / (2) No: ")
+
+            if decision3 == "1":
+                print("\nLe das una buena propina y sigues tu camino.")
+                print("Llegás al supermercado y comprás todo lo que necesitás.")
+                decision4 = input("Al pagar, te avisan que sos el comprador 100.000 del supermercado. ¿Querés recibir el premio? (1) Sí / (2) No, desconfías: ")
+
+                if decision4 == "1":
+                    print("\nFinal 4: ¡Ganaste un premio increíble! Te llevás una TV de 55 pulgadas y las compras son gratis.")
+                    print("¡Felicitaciones, es el mejor final posible!")
+                else:
+                    print("\nFinal 5: Compraste todo sin problemas, pero rechazaste el premio por desconfianza.")
+                    print("A pesar de eso, llegás a casa tranquilo. ¡Misión cumplida!")
+            else:
+                print("\nDecidís no darle propina y el trapito se enoja.")
+                print("Final 6: Te rompe el vidrio del auto y no podés ir al supermercado. ¡Qué mala suerte!")
+
         else:
-            print("\nOpción no válida. Te pierdes en el bosque y decides abandonar el viaje.")
-            print("Game Over.")
-    else:
-        print("\nOpción no válida. Pierdes el valor de emprender el viaje y decides quedarte en la aldea.")
-        print("Game Over.")
+            print("\nDecidís caminar hasta el supermercado.")
+            print("La caminata es agradable, pero te distraés sacando el celular.")
+            print("Alguien te roba el celular mientras caminas.")
+            print("Final 7: Te quedás sin celular y sin poder hacer las compras. ¡Un verdadero desastre!")
+
+    elif decision1 == "2":
+        print("\nSalís sin revisar nada.")
+        print("Llegás al supermercado, pero te das cuenta de que te olvidaste la billetera en casa.")
+        decision2 = input("¿Qué hacés? (1) Volvés a buscarla / (2) Intentás comprar con el celular: ")
+
+        if decision2 == "1":
+            print("\nVolvés a casa a buscar la billetera, pero te distraés viendo la tele y te olvidás de volver al supermercado.")
+            print("Final 8: El supermercado cierra mientras vos te quedás mirando una peli.")
+        else:
+            print("\nIntentás pagar con el celular, pero te das cuenta de que no tenés suficiente saldo en la cuenta.")
+            print("Final 9: Te quedás sin poder comprar nada. ¡Qué día más desafortunado!")
     
-    print("\nFin de la historia. Gracias por jugar.")
+    elif decision1 == "3":
+        print("\nTe quedás viendo TikTok y perdés la noción del tiempo.")
+        print("Cuando te das cuenta, el supermercado ya está cerrado.")
+        decision2 = input("¿Vas a otro almacén o te quedás en casa? (1) Vas a otro almacén / (2) Te quedás en casa: ")
+
+        if decision2 == "1":
+            print("\nVas a otro almacén, pero mientras caminás por la calle, alguien te sigue.")
+            print("Final 10: Te secuestran. Fin de la historia.")
+        else:
+            print("\nTe quedás en casa viendo más TikTok.")
+            print("Final 11: No compraste nada y te quedaste con hambre. ¡Qué noche más productiva!")
+
+    else:
+        print("\Final oculto.")
+        print("Final 12: Inteligente pediste en pedidosYa porque tenias un cupon.")
+
+    print("\nFin de la historia. ¡Gracias por jugar!")
 
 if __name__ == "__main__":
     main()
