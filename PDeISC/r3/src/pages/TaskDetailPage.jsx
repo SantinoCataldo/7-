@@ -1,6 +1,7 @@
 // src/pages/TaskDetailPage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import styles from './Task.module.css';
 
 const TaskDetailPage = ({ tasks, toggleTaskCompletion }) => {
   const { id } = useParams();
@@ -24,15 +25,17 @@ const TaskDetailPage = ({ tasks, toggleTaskCompletion }) => {
   }
 
   return (
-    <div>
+    <div className={styles.individual__task}>
       <h1>{task.title}</h1>
       <p>{task.description}</p>
       <p>Creado: {task.createdAt}</p>
       <p>Estado: {task.status}</p>
-      <button onClick={handleToggleCompletion}>
-        {task.status === "Completa" ? "Tarea Incompleta" : "Tarea Completa"}
-      </button>
-      <button onClick={handleBack}>Volver</button>
+      <div>
+        <button className={styles.button} onClick={handleToggleCompletion}>
+          {task.status === "Completa" ? "Tarea Incompleta" : "Tarea Completa"}
+        </button>
+        <button className={styles.button} onClick={handleBack}>Volver</button>
+      </div>
     </div>
   );
 };

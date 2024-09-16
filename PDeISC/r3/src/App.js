@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import TaskDetailPage from './pages/TaskDetailPage';
 import CreateTaskPage from './pages/CreateTaskPage';
 import styles from './App.module.css' 
+
+const Nav = () => {
+  const location = useLocation(); // Hook para obtener la ruta actual
+
+  // Función para verificar si el enlace está activo
+  const isActive = (path) => location.pathname === path;
+
+  return (
+    <nav className={styles.nav}>
+      <Link to="/" className={isActive("/") ? styles.nav__a__active : styles.nav__a}>Home</Link>
+      <Link to="/create-task" className={isActive("/create-task") ? styles.nav__a__active : styles.nav__a}>Crear Tarea</Link>
+    </nav>
+  );
+};
 
 function App() {
   const getInitialTasks = () => {
@@ -28,7 +42,7 @@ function App() {
     setTasks(filteredTasks);
   };
 
-  // Función para alternar el estado de una tarea (completa/incompleta)
+  // Función para pasar el estado de una tarea (completa/incompleta)
   const toggleTaskCompletion = (id) => {
     const updatedTasks = tasks.map(task =>
       task.id === id ? { ...task, status: task.status === "Completa" ? "Incompleta" : "Completa" } : task
@@ -38,9 +52,7 @@ function App() {
 
   return (
     <Router>
-      <nav className={styles.nav}>
-        <Link className={styles.nav_a} to="/">Home</Link> | <Link className={styles.nav_a} to="/create-task">Crear Tarea</Link>
-      </nav>
+      <Nav/>
       <Routes>
         <Route path="/" element={<HomePage tasks={tasks} deleteTask={deleteTask} toggleTaskCompletion={toggleTaskCompletion} />} />
         <Route path="/task/:id" element={<TaskDetailPage tasks={tasks} toggleTaskCompletion={toggleTaskCompletion} />} />

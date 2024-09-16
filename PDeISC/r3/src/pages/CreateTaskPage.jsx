@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './Task.module.css';
 
 const CreateTaskPage = ({ addTask }) => {
   const [title, setTitle] = useState('');
@@ -20,11 +21,11 @@ const CreateTaskPage = ({ addTask }) => {
   };
 
   return (
-    <div>
+    <div className={styles.home}>
       <h1>Create New Task</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.form__labels}>
+          <p>Titulo: </p>
           <input
             type="text"
             value={title}
@@ -32,25 +33,23 @@ const CreateTaskPage = ({ addTask }) => {
             required
           />
         </label>
-        <br />
-        <label>
-          Descripcion:
+        <label className={styles.form__labels}>
+          <p>Descripcion: </p>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>
-        <br />
-        <label>
-          Estado:
+        <label className={styles.form__labels}>
+          <p>Estado: </p>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="Incompleta">Incompleta</option>
             <option value="Completa">Completa</option>
           </select>
         </label>
         <br />
-        <button type="submit">Create Task</button>
+        <button className={styles.button} type="submit">Crear Tarea</button>
       </form>
     </div>
   );

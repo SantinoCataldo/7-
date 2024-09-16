@@ -1,12 +1,20 @@
 .nav {
-  width: 100%;
-  text-align: end;
-  transform: translateX(-15px);
-  padding-top: 15px;
+  padding: 15px;
+  border-bottom: 1px solid #fff;
+  width: fit-content;
 }
 
-.nav_a {
+.nav__a {
   color: #fff;
-  font-weight: bold;
-  text-decoration: none;
+  margin: 0 7.5px;
+  transition: .2s;
+}
+
+.nav__a__active {
+  color: #f69; 
+  margin: 0 7.5px;
+}
+
+.nav__a:hover {
+  opacity: 0.7;
 }
