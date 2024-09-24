@@ -6,8 +6,7 @@
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    background: #111;
-    height: 100vh;   
+    background: #111; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,14 +17,71 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     gap: 30px;
     width: min(1400px, 100%);
+    height: 100vh;  
+}
+
+.manual {
+    display: flex;
+    margin-top: 60px;
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 30px;
+    width: min(1400px, 100%);
+    color: #fff;
+}
+
+.manual a {
+    outline: 1px solid #fff;
+    padding: 15px 30px;
+    color: #725bdc;
+    transition: .3s;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+.manual a:hover {
+    background: #fff;
+    outline: none;
+}
+
+.manual th,.manual td{
+    border: 1px solid #fff;
+    padding: 15px;
+}
+
+.manual details {
+    border: 1px solid #fff;
+  
+}
+
+.manual details p {
+    padding: 0 0 15px 15px;
+}
+
+.manual summary {
+    cursor: pointer;
+    padding: 15px;
+}
+
+footer{
+    color: #fff;
+    margin-top: 60px;
+    padding: 30px 0 30px;
+    border-top: 1px solid #fff;
+    width: 100%;
+    text-align: center;
 }
 
 .container{
-    padding: 0 20px;
     font-weight: 500;
     display: flex;
     flex-direction: column;
@@ -35,13 +91,20 @@ main {
 
 #container {
     background: #fff;
-    width: min(700px, 100%);
+    width: 500px;
     border-radius: 10px;
     position: relative;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
-    padding: 20px;
     border: 5px solid #725bdc;
+    padding: 20px 0;
+}
+
+.container_super{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 #loader{
@@ -123,6 +186,7 @@ main {
 #ahorcadoCanvas {
     border: 1px solid #111;
     border-radius: 10px;
+    width: 160px;
 }
 
 #jugar {
@@ -178,7 +242,7 @@ main {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 200px;
+    width: 400px;
     text-align: center;
     background: #fff;
     border-radius: 10px;
@@ -192,11 +256,28 @@ main {
     color: #000;
 }
 
-#continueButton, #exitButton, #restartButton {
+.botones {
+    display: flex;
+    gap: 15px;
+}
+
+#continueButton, #exitButton, #restartButton{
     font-size: 18px;
     padding: 10px 20px;
     font-weight: 500;
     background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#messageContainer a button {
+    font-size: 18px;
+    padding: 10px 20px;
+    font-weight: 500;
+    background: #725bdc;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -235,8 +316,6 @@ main {
 }
 
 #tablaPosicionesContainer{
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -246,7 +325,6 @@ main {
     text-align: center;
     padding: 15px 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
     border: 5px solid #725bdc;
 }
 
