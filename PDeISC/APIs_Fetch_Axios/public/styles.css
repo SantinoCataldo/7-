@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -11,6 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 30px;
 }
 
 main {
@@ -38,19 +43,20 @@ main {
     color: #fff;
 }
 
-.manual a {
-    outline: 1px solid #fff;
-    padding: 15px 30px;
-    color: #725bdc;
-    transition: .3s;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-right: 30px;
-}
-
-.manual a:hover {
-    background: #fff;
-    outline: none;
+body::before{
+    --size: 45px;
+    --line: color-mix(in lch, #fff, transparent 70%);
+    content: '';
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size), linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size);
+    -webkit-mask: linear-gradient(-20deg, transparent 40%, white);
+    mask: linear-gradient(-20deg, transparent 40%, white);
+    top: 0;
+    transform-style: flat;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .manual th,.manual td{
@@ -70,6 +76,119 @@ main {
 .manual summary {
     cursor: pointer;
     padding: 15px;
+}
+
+.manual details[open] summary {
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.manual details[open] p {
+    animation: slideDown 0.3s ease forwards;
+}
+
+.manual a {
+    outline: 1px solid #fff;
+    padding: 15px 30px;
+    background: #725bdc; 
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+.manual h2 {
+    color: #725bdc;
+    border: 3px solid #725bdc;
+    max-width: max-content;
+    padding: 5px 15px;
+    background: #fff;
+    margin: 15px 0;
+}
+
+.manual a:hover {
+    background: #735bdc1e;
+    color: #fff;
+    backdrop-filter: blur(15px);
+}
+
+.manual img {
+    max-width: 100%;
+    margin: 10px;
+    transition: transform 0.3s ease;
+    transform: scale(0.95);
+}
+
+.manual img:hover {
+    transform: scale(1); /* Amplía la imagen al pasar el mouse */
+}
+
+.questions{
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 30px 0 30px 30px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3); /* Sombra alrededor */
+    backdrop-filter: blur(5px);
+}
+
+.nav-buttons button{
+    outline: 1px solid #fff;
+    padding: 15px 30px;
+    background: #725bdc; 
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 30px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    background: #735bdc1e;
+    color: #fff;
+    backdrop-filter: blur(15px);
+}
+
+#btnSubir {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #725bdc; /* Color verde */
+    color: white;
+    outline: 2px solid #fff;
+    border: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+    font-family: "Poppins", sans-serif;
+    transition: .3s;
+}
+
+#btnSubir:hover {
+    transform: scale(1.05
+    );
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
 }
 
 footer{

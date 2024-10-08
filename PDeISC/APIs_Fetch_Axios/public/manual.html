@@ -7,22 +7,32 @@
     <title>Manual de Usuario</title>
     <link rel="stylesheet" href="styles.css"> <!-- Enlace a la hoja de estilos -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body>
-    <section class="manual">
+<body onload="AOS.init();">
+    <section data-aos="fade-up" class="manual">
         <h1>Manual de Usuario</h1>
         <div class="links">
             <a href="index.html">Inicio</a>
             <a href="manual.html">Manual de Usuario</a>
         </div>
-        <section>
+        <section id="introduccion">
             <h2>Introducción</h2>
             <p>Este manual te guiará a través de las funcionalidades del juego Ahorcadaso, explicando cómo jugar, las
                 reglas, y las principales características.</p>
         </section>
-
-        <section>
+        <div class="nav-buttons">
+            <button onclick="location.href='#introduccion'">Introducción</button>
+            <button onclick="location.href='#requisitos'">Requisitos del Sistema</button>
+            <button onclick="location.href='#como'">Cómo Jugar</button>
+            <button onclick="location.href='#puntuacion'">Puntuación</button>
+            <button onclick="location.href='#reglas'">Reglas del juego</button>
+            <button onclick="location.href='#controles'">Controles</button>
+            <button onclick="location.href='#faq'">FAQ</button>
+        </div>
+        <section id="requisitos">
             <h2>Requisitos del Sistema</h2>
             <ul>
                 <li>Navegador web compatible (Chrome, Firefox, Edge)</li>
@@ -31,59 +41,85 @@
             </ul>
         </section>
 
-        <section>
-            <h2>Preguntas Frecuentes</h2>
-            <p>Si tienes problemas con el juego, consulta nuestra sección de <a href="#faq">Preguntas Frecuentes (FAQ)</a></p>
-        </section>
-
-        <section>
+        <section id="como">
             <h2>Cómo Jugar</h2>
             <ol>
-                <li>Haz clic en "Jugar" en la página de inicio.</li>
-                <img src="./img/1.png" alt="">
-                <li>Elige una letra para intentar adivinar la palabra oculta.</li>
-                <img src="./img/5.png" alt="">
-                <li>Por cada letra incorrecta, perderás una vida.</li>
-                <img src="./img/10.png" alt="">
-                <li>Las vidas se reinician cada vez que adivinas una palabra</li>
-                <img src="./img/9.png" alt="">
-                <li>Al acertar la palabra se habilita el boton de "Continuar" donde te muestra la proxima palabra que
-                    tiene que ser descubierta</li>
-                <img src="./img/8.png" alt="">
-                <li>El objetivo es adivinar la mayor cantidad de palabras hasta quedarte sin vidas y equivocarte la
-                    palabra</li>
+                <div class="questions">
+                    <li>Haz clic en "Jugar" en la página de inicio.</li>
+                    <img src="./img/1.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Elige una letra para intentar adivinar la palabra oculta.</li>
+                    <img src="./img/5.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Por cada letra incorrecta, perderás una vida.</li>
+                    <img src="./img/10.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Las vidas se reinician cada vez que adivinas una palabra</li>
+                    <img src="./img/9.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Al acertar la palabra se habilita el boton de "Continuar" donde te muestra la próxima palabra
+                        que
+                        tiene que ser descubierta</li>
+                    <img src="./img/8.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>El objetivo es adivinar la mayor cantidad de palabras hasta quedarte sin vidas y equivocarte la
+                        palabra</li>
                     <img src="./img/7.png" alt="">
-                <li>En cualquier momento podes reiniciar la partida con el boton "Reiniciar"</li>
-                <img src="./img/2.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>En cualquier momento puedes reiniciar la partida con el botón "Reiniciar"</li>
+                    <img src="./img/2.png" alt="">
+                </div>
             </ol>
         </section>
 
-        <section>
+        <section id="puntuacion">
             <h2>Puntuación</h2>
-            <p>La puntuación se calcula con base en el número de palabras y letras adivinadas y el tiempo transcurrido.
-                Al finalizar una partida, puedes guardar tu puntuación y compararla con el top 5 jugadores.</p>
+            <div class="questions">
+                <p>La puntuación se calcula con base en el número de palabras y letras adivinadas y el tiempo
+                    transcurrido.
+                    Al finalizar una partida, puedes guardar tu puntuación y compararla con el top 5 jugadores.</p>
                 <img src="./img/3.png" alt="">
-            <p>Al Errar la palabra te aparece un Formulario para poner tu nombre y un boton "Guardar Puntuación"
-                para guardar</p>
-            <img src="./img/6.png" alt="">
+            </div>
+            <div class="questions">
+                <p>Al errar la palabra te aparece un formulario para poner tu nombre y un botón "Guardar Puntuación"
+                    para guardar</p>
+                <img src="./img/6.png" alt="">
+            </div>
         </section>
 
-        <section>
+        <section id="reglas">
             <h2>Reglas del juego</h2>
             <ul>
-                <li>Tienes 6 intentos incorrectos por letrs antes de que se complete el ahorcado y pierdas el juego.
-                </li>
-                <li>Cada letra correcta te da 20 puntos.</li>
-                <img src="./img/11.png" alt="">
-                <li>Cada letra incorrecta te saca 10 puntos y perderás una vida.</li>
-                <img src="./img/12.png" alt="">
-                <li>Cada palabra hacertada te da 50 puntos</li>
-                <li>Al poner continuar despues de poner continuar se suman los puntos de la palabra y de los segundos
-                </li>
+                <div class="questions">
+                    <li>Tienes 6 intentos incorrectos por letras antes de que se complete el ahorcado y pierdas el
+                        juego.
+                    </li>
+                </div>
+                <div class="questions">
+                    <li>Cada letra correcta te da 20 puntos.</li>
+                    <img src="./img/11.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Cada letra incorrecta te saca 10 puntos y perderás una vida.</li>
+                    <img src="./img/12.png" alt="">
+                </div>
+                <div class="questions">
+                    <li>Cada palabra acertada te da 50 puntos</li>
+                </div>
+                <div class="questions">
+                    <li>Al poner continuar después de acertar se suman los puntos de la palabra y de los
+                        segundos</li>
+                </div>
             </ul>
         </section>
 
-        <section>
+        <section id="controles">
             <h2>Controles</h2>
             <table>
                 <thead>
@@ -95,7 +131,7 @@
                 <tbody>
                     <tr>
                         <td>Elegir letra</td>
-                        <td>Hacer clic en una letra disponible en pantalla o usa el teclado</td>
+                        <td>Hacer clic en una letra disponible en pantalla o usar el teclado</td>
                     </tr>
                     <tr>
                         <td>Guardar puntuación</td>
@@ -110,7 +146,7 @@
         </section>
 
         <section id="faq">
-            <h3>FAQ - Preguntas Frecuentes</h3>
+            <h2>FAQ - Preguntas Frecuentes</h2>
             <details>
                 <summary>¿Cómo reinicio el juego?</summary>
                 <p>Para reiniciar el juego, haz clic en el botón "Reiniciar" que aparece después de finalizar una
@@ -123,10 +159,28 @@
             </details>
         </section>
     </section>
+    <button id="btnSubir" title="Subir" onclick="subirArriba()">⬆</button>
 
     <footer>
         <p>&copy; 2024 Ahorcadaso. Todos los derechos reservados.</p>
     </footer>
 </body>
+
+<script>
+    // Función para subir hacia arriba de la página
+    function subirArriba() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mostrar el botón solo cuando el usuario ha bajado 200px
+    window.onscroll = function() {
+        let btn = document.getElementById("btnSubir");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+</script>
 
 </html>
