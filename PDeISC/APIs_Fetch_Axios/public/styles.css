@@ -15,7 +15,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     padding: 0 30px;
+=======
+    overflow-x: hidden;
+>>>>>>> 2d684dc58cba68533c10a1e85313bc4ccd22ee0f
 }
 
 main {
@@ -33,13 +37,15 @@ main {
 .manual {
     display: flex;
     margin-top: 60px;
+    margin-left: 60px;
     min-height: 100vh;
     justify-content: center;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
     gap: 30px;
     width: min(1400px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 30px;
     color: #fff;
 }
 
