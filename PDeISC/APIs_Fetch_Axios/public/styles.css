@@ -15,11 +15,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
-    padding: 0 30px;
-=======
+    padding: 0 60px;
     overflow-x: hidden;
->>>>>>> 2d684dc58cba68533c10a1e85313bc4ccd22ee0f
+    box-sizing: border-box;
 }
 
 main {
@@ -45,7 +43,6 @@ main {
     width: min(1400px, 100%);
     margin-left: auto;
     margin-right: auto;
-    padding: 0 30px;
     color: #fff;
 }
 
@@ -149,7 +146,7 @@ body::before{
     transition: background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 30px;
+    margin-right: 15px;
     border: none;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
