@@ -25,6 +25,41 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+# Proyecto de Autenticación
+
+Este proyecto incluye un archivo PHP para el manejo de autenticación de usuarios. Asegúrate de colocar el archivo `login.php` en la carpeta correcta para que funcione correctamente con XAMPP.
+
+## Instrucciones
+
+1. **Instalar XAMPP**:
+   - Si no tienes XAMPP instalado, puedes descargarlo e instalarlo desde [aquí](https://www.apachefriends.org/index.html).
+
+2. **Ubicar el archivo `login.php`**:
+   - Copia el archivo `login.php` que se encuentra en la carpeta `backend` de este proyecto y pégalo en la siguiente ruta:
+     ```
+     C:\xampp\htdocs\login
+     ```
+
+3. **Iniciar Apache**:
+   - Abre el Panel de Control de XAMPP y asegúrate de que el servidor Apache esté iniciado.
+
+4. **Acceder al archivo**:
+   - Abre tu navegador web y accede a `http://localhost/login/login.php` para verificar que el archivo esté funcionando correctamente.
+
+5. **Base de datos**:
+   ```
+   CREATE DATABASE usuarios;
+   USE usuarios;
+
+   CREATE TABLE users (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   ); 
+   ```
+
+
 ## Get a fresh project
 
 When you're ready, run:
