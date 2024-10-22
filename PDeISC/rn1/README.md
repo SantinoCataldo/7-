@@ -48,10 +48,10 @@ Este proyecto incluye un archivo PHP para el manejo de autenticación de usuario
 
 5. **Base de datos**:
    ```
-   CREATE DATABASE usuarios;
-   USE usuarios;
+   CREATE DATABASE rn01;
+   USE rn01;
 
-   CREATE TABLE users (
+   CREATE TABLE usuarios (
       id INT AUTO_INCREMENT PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL,
