@@ -179,8 +179,7 @@ body::before{
 }
 
 #btnSubir:hover {
-    transform: scale(1.05
-    );
+    transform: scale(1.05);
 }
 
 @keyframes slideDown {
@@ -191,6 +190,8 @@ body::before{
     to {
         max-height: 500px;
         opacity: 1;
+        background: #725bdc;
+        padding-top: 15px;
     }
 }
 
@@ -311,6 +312,11 @@ footer{
     width: 160px;
 }
 
+.botones-locos{
+    display: flex;
+    gap: 15px;
+}
+
 #jugar {
     font-size: 18px;
     padding: 16px 28px;
@@ -322,6 +328,34 @@ footer{
     font-family: "Poppins", sans-serif;
     cursor: pointer;
     transition: .3s;
+}
+
+.dificultad {
+    font-size: 18px;
+    padding: 16px 28px;
+    font-weight: 500;
+    background: #11111183;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.dificultad.seleccionado {
+    background: transparent;
+    outline: 3px solid #fff;
+    box-shadow: 0 0 15px #fff;
+    color: #fff;
+}
+
+.dificultad:hover{
+    transform: scale(.95);
+}
+
+.dificultad.seleccionado:hover{
+    transform: scale(1.05);
 }
 
 #jugar:hover {
@@ -452,5 +486,31 @@ footer{
 
 #tablaPosiciones thead tr th{
     padding-right: 10px;
+}
+
+#dificultad{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.uepa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 30px 0 30px 30px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+#dificultad li{
+    margin: 15px 0;
+}
+
+#dificultad div img{
+    height: 400px;
 }
 

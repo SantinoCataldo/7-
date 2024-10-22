@@ -19,6 +19,25 @@ let continueButton = document.getElementById('continueButton');
 let exitButton = document.getElementById('exitButton');
 const tiempoElemento = document.getElementById('tiempo');
 const tablaPosicionesContainer = document.getElementById('tablaPosicionesContainer');
+let dificultad = 'facil'; // Iniciar con dificultad "fácil" por defecto
+let vidasGlobales = 6;
+const facilButton = document.getElementById('facilButton');
+const dificilButton = document.getElementById('dificilButton');
+
+facilButton.addEventListener('click', () => {
+    dificultad = 'facil';
+    facilButton.classList.add('seleccionado');
+    dificilButton.classList.remove('seleccionado');
+    limpiarCanvas(); // Limpiar el canvas solo en fácil
+});
+
+// Evento para seleccionar dificultad "Difícil"
+dificilButton.addEventListener('click', () => {
+    dificultad = 'dificil';
+    facilButton.classList.remove('seleccionado');
+    dificilButton.classList.add('seleccionado');
+    // No se reinician las vidas, se mantienen las globales
+});
 
 continueButton.addEventListener('click', () => {
     messageElement.textContent = ''; // Limpiar el mensaje
@@ -60,21 +79,23 @@ function detenerTemporizador() {
 
 async function empezarJuego() {
     letrasUsadas.clear();
-    intentosRestantes = 6;
-    // No reiniciar puntos ni tiempo transcurrido aquí
-    if (!temporizador) {  // Iniciar el temporizador solo si no está ya en marcha
-        iniciarTemporizador();
+
+    if (dificultad === 'facil') {
+        intentosRestantes = 6;  // Reiniciar vidas en modo fácil
+        limpiarCanvas();  // Limpiar el canvas en modo fácil
+    } else if (dificultad === 'dificil') {
+        intentosRestantes = vidasGlobales;  // Mantener las vidas en modo difícil
     }
+
     await obtenerPalabra();
     actualizarPalabra();
-    limpiarCanvas();
     dibujarBase();
     crearBotonesLetras();
     actualizarVidas();
     habilitarLetras(true);
     habilitarTeclado(true);
+    iniciarTemporizador();
 }
-
 
 async function obtenerPalabra() {
     try {
@@ -180,6 +201,9 @@ function finalizarJuego(mensaje) {
     desactivarTeclado();
     puntos += mensaje === 'Ganaste' ? 50 : 0; // Bonus por ganar
     puntos += mensaje === 'Ganaste' ? Math.max(0, 100 - tiempoTranscurrido) : 0; // Bonus por tiempo si se gana
+    if (dificultad === 'dificil') {
+        vidasGlobales = intentosRestantes;  // Mantener las vidas restantes si es modo difícil
+    }
     mostrarMensajeFinal(mensaje, mensaje === 'Ganaste');
 }
 

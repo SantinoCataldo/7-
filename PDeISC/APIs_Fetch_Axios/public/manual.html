@@ -26,6 +26,7 @@
         <div class="nav-buttons">
             <button onclick="location.href='#introduccion'">Introducción</button>
             <button onclick="location.href='#requisitos'">Requisitos del Sistema</button>
+            <button onclick="location.href='#dificultad'">Opciones de Dificultad</button>
             <button onclick="location.href='#como'">Cómo Jugar</button>
             <button onclick="location.href='#puntuacion'">Puntuación</button>
             <button onclick="location.href='#reglas'">Reglas del juego</button>
@@ -40,7 +41,33 @@
                 <li>Resolución de pantalla mínima de 1024x768</li>
             </ul>
         </section>
-
+        <section id="dificultad">
+            <h2>Opciones de Dificultad</h2>
+            <div class="uepa">
+                <p>El juego Ahorcadaso ofrece dos niveles de dificultad para que puedas elegir el que mejor se adapte a
+                    tus habilidades:</p>
+                <ol>
+                    <li>
+                        <h3>Dificultad Fácil</h3>
+                        <p>En este modo al adivinar una palabra se te reinician las vidas. Este modo es ideal para
+                            principiantes o para quienes desean una experiencia más relajada.</p>
+                    </li>
+                    <li>
+                        <h3>Dificultad Difícil</h3>
+                        <p>En el modo difícil contas con 6 vidas que vas a tener que mantener hasta que se termine el
+                            jeugo, al adivinar una plabara no se te reinician las vidas, lo que aumenta la presión y
+                            hace que el juego sea más desafiante. Este modo es perfecto para jugadores experimentados
+                            que buscan poner a prueba sus habilidades.</p>
+                    </li>
+                </ol>
+                <div>
+                    <p>Para seleccionar tu nivel de dificultad, simplemente elige la opción correspondiente en la
+                        pantalla de inicio antes de comenzar a jugar.</p>
+                    <img src="./img/13.png" alt="">
+                    <img src="./img/14.png" alt="">
+                </div>
+            </div>
+        </section>
         <section id="como">
             <h2>Cómo Jugar</h2>
             <ol>
@@ -173,7 +200,7 @@
     }
 
     // Mostrar el botón solo cuando el usuario ha bajado 200px
-    window.onscroll = function() {
+    window.onscroll = function () {
         let btn = document.getElementById("btnSubir");
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             btn.style.display = "block";
