@@ -1,50 +1,41 @@
-# Welcome to your Expo app 👋
+# Torneo de Fútbol
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto es una aplicación para gestionar un torneo de fútbol. A continuación se indican los pasos necesarios para configurar el entorno y ejecutar la aplicación.
 
-## Get started
+## Requisitos
 
-1. Install dependencies
+- [XAMPP](https://www.apachefriends.org/index.html) para la base de datos.
+- Node.js y npm instalados en tu máquina.
 
-   ```bash
-   npm install
-   ```
+## Configuración de la Base de Datos
 
-2. Start the app
+1. **Instalar XAMPP**: Si no tienes XAMPP instalado, descárgalo e instálalo desde [Apache Friends](https://www.apachefriends.org/index.html).
 
-   ```bash
-    npx expo start
-   ```
+2. **Importar la Base de Datos**:
+   - Abre el panel de control de XAMPP y asegúrate de que el servidor MySQL esté en ejecución.
+   - Accede a `phpMyAdmin` en tu navegador (normalmente en `http://localhost/phpmyadmin`).
+   - Crea una nueva base de datos llamada `torneo_futbol`.
+   - Importa el archivo `torneo_futbol.bd` que se encuentra en la carpeta `backend` de este proyecto.
 
-In the output, you'll find options to open the app in a
+## Iniciar el Servidor
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. **Navegar a la Carpeta del Proyecto**:
+   - Abre una terminal y navega a la carpeta raíz de tu proyecto.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+2. **Iniciar el Servidor de Backend**:
+   - Ejecuta el siguiente comando para iniciar el servidor de Node.js:
+     ```
+     node server.js
+     ```
 
-## Get a fresh project
+3. **Iniciar la Aplicación de Frontend**:
+   - Abre otra terminal en la misma carpeta del proyecto y ejecuta:
+     ```
+     npm start
+     ```
 
-When you're ready, run:
+## Acceso a la Aplicación
 
-```bash
-npm run reset-project
-```
+Una vez que ambos servidores estén en funcionamiento, puedes acceder a la aplicación en tu navegador en la siguiente URL:
+http://localhost:8081
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
