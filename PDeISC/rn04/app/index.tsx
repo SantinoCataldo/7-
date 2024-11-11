@@ -1,4 +1,4 @@
-import { Image, StyleSheet, ScrollView, View } from 'react-native';
+import { Image, StyleSheet, ScrollView, View, Button, TouchableOpacity } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -6,12 +6,21 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useEffect, useState } from 'react';
 import { Equipo, Jugador, Partido, EstadisticaJugador } from '@/utils/types';
+import { useRouter } from 'expo-router';
+import * as Linking from 'expo-linking';
 
 export default function HomeScreen() {
   const [equipos, setEquipos] = useState<Equipo[]>([]);
   const [jugadores, setJugadores] = useState<Jugador[]>([]);
   const [partidos, setPartidos] = useState<Partido[]>([]);
   const [estadisticas, setEstadisticas] = useState<EstadisticaJugador[]>([]);
+  const [userName, setUserName] = useState<string | null>(null);
+  const router = useRouter();
+
+  const redirectToLogin = () => {
+    router.push('/login');
+  };
+
 
   // Función para obtener los equipos
   const fetchEquipos = async () => {
@@ -58,11 +67,27 @@ export default function HomeScreen() {
 
   // Llamadas a la API cuando se monta el componente
   useEffect(() => {
+    const user = localStorage.getItem('user'); // Recupera el nombre del usuario del localStorage
+    if (user) {
+      setUserName(user); // Si hay un usuario guardado, actualiza el estado
+    }
+
     fetchEquipos();
     fetchJugadores();
     fetchEstadisticas();
     fetchPartidos();
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Elimina el token
+    localStorage.removeItem('user');  // Elimina el nombre del usuario si lo guardaste
+    setUserName(null);
+  };
+
+  const openGoogleMaps = (lugar: string) => {
+    const url = `https://www.google.com/maps/search/?q=${encodeURIComponent(lugar)}`;
+    Linking.openURL(url); // Esto abrirá la URL en el navegador predeterminado
+  };  
 
   return (
     <ParallaxScrollView
@@ -72,12 +97,24 @@ export default function HomeScreen() {
           source={require('@/assets/images/pelota.png')}
           style={styles.reactLogo} />
       }>
+      {userName ? (
+        // Si el usuario está logueado, muestra su nombre y el botón de logout
+        <View style={styles.userInfoContainer}>
+          <p>{userName}</p>
+          <Button title="Logout" onPress={handleLogout} />
+        </View>
+      ) : (
+        // Si no está logueado, muestra el botón de login
+        <View style={styles.userInfoContainer}>
+          <Button title="Login" onPress={redirectToLogin} />
+        </View>
+
+      )}
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Torneo de Futbol!</ThemedText>
         <HelloWave />
       </ThemedView>
       <ScrollView style={styles.dataContainer}>
-
         {/* Sección para mostrar los partidos */}
         <ThemedText type="subtitle">Partidos:</ThemedText>
         <View style={styles.container}>
@@ -87,7 +124,9 @@ export default function HomeScreen() {
                 {partido.equipo_local_nombre} vs {partido.equipo_visitante_nombre}
               </p>
               <p>Fecha: {new Date(partido.fecha).toLocaleDateString()}</p>
-              <p>Lugar: {partido.lugar}</p>
+              <TouchableOpacity onPress={() => openGoogleMaps(partido.lugar)}>
+                <p style={styles.placeText}>Lugar: {partido.lugar}</p>
+              </TouchableOpacity>
               <p>Resultado: {partido.goles_local} - {partido.goles_visitante}</p>
             </View>
           ))}
@@ -123,6 +162,7 @@ export default function HomeScreen() {
                         <p>Número: {jugador.numero_casaca}</p>
                         {estadistica && (
                           <View style={styles.statsContainer}>
+                            <b>Estadisticas:</b>
                             <p>Partidos Jugados: {estadistica.partidos_jugados}</p>
                             <p>Goles: {estadistica.goles}</p>
                             <p>Tarjetas Rojas: {estadistica.tarjetas_rojas}</p>
@@ -196,7 +236,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   separator: {
-    margin: 15,
+    marginHorizontal: 80,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -230,4 +270,18 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 20,
   },
+  userInfoContainer: {
+    // position:"absolute",
+    // right: 15,
+    // zIndex: 1000,
+    fontFamily: "Arial",
+    width: 120,
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  placeText: {
+    color: 'blue',
+  }
 });
