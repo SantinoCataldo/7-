@@ -5,21 +5,44 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const SECRET_KEY = 'CwpOZGNFDf73DLGluDRp9ms4NgPr6A8Q';  
 
 app.use(express.json());
 app.use(cors());
 
+// Endpoint de registro de usuario
+app.post('/register', async (req, res) => {
+    const { name, email, password, tipo_usuario } = req.body;
+    
+    // Verificar si el email ya está registrado
+    connection.query('SELECT * FROM usuarios WHERE email = ?', [email], async (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (results.length > 0) return res.status(400).json({ error: 'El email ya está registrado' });
+
+        // Encriptar la contraseña
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Guardar el nuevo usuario con el nombre
+        const query = 'INSERT INTO usuarios (nombre, email, contraseña, tipo_usuario) VALUES (?, ?, ?, ?)';
+        connection.query(query, [name, email, hashedPassword, tipo_usuario], (err) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ message: 'Usuario registrado exitosamente' });
+        });
+    });
+});
+
+// Endpoint de inicio de sesión
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
+
     connection.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         if (results.length === 0) return res.status(401).json({ error: 'Usuario no encontrado' });
 
         const user = results[0];
+
         // Verificar la contraseña
         bcrypt.compare(password, user.contraseña, (err, isMatch) => {
             if (err || !isMatch) return res.status(401).json({ error: 'Contraseña incorrecta' });
@@ -28,14 +51,26 @@ app.post('/login', (req, res) => {
             const token = jwt.sign({ id: user.id, tipo_usuario: user.tipo_usuario }, SECRET_KEY, {
                 expiresIn: '1h',
             });
-            res.json({ token });
+
+            // Responder con el token y los datos del usuario (incluyendo el nombre)
+            res.json({
+                token,
+                user: {
+                    email: user.email,
+                    nombre: user.nombre, // Asegúrate de que este campo esté presente en tu base de datos
+                    tipo_usuario: user.tipo_usuario, // Puedes agregar más campos si es necesario
+                },
+            });
+
+            console.log(user);  // Para ver el usuario completo en los logs
         });
     });
 });
 
+
+
 // Ruta para cerrar sesión (ejemplo básico)
 app.post('/logout', (req, res) => {
-    // Eliminar el token en el cliente (manejado en el frontend)
     res.json({ message: 'Sesión cerrada con éxito' });
 });
 

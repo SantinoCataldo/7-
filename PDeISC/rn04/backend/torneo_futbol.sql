@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2024 a las 22:52:08
+-- Tiempo de generación: 11-11-2024 a las 04:10:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -248,9 +248,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `contraseña`, `tipo_usuario`, `oauth_id`) VALUES
-(4, 'Admin User', 'admin@example.com', '$2b$12$ON7hdF4SBRUxIKa1y1MzhuKG7OS84dZBaD/qqKnIczwhU9yqH8JZW', 'Administrador', NULL),
-(5, 'Player User', 'player@example.com', '$2b$12$9OHyWUTwwe7sFCiz.Q4GPuav8o2RMr0jMR1.fQ4f8VHEJgF6RHau.', 'Jugador', NULL),
-(6, 'Follower User', 'follower@example.com', '$2b$12$eW7DskPxMkWvE/bSyRF3qubjvofR7Gh5uxIWX8oYC8.V/bhSvVyU2', 'Seguidor', NULL);
+(9, 'santitto', 'santinocataldo1@gmail.com', '$2b$10$z6j3Q9KKqscF5lwwuBn3N.Pw/nopRLDnhUSmvwzcZ.aqtXlnbC8b6', 'Administrador', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -336,7 +334,7 @@ ALTER TABLE `partidos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
